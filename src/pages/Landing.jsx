@@ -1,4 +1,10 @@
+import { Hero } from "../components/index.js";
+
 const Landing = () => {
-  return <div>Landing</div>;
+  return (
+    <>
+      <Hero />
+    </>
+  );
 };
 export default Landing;
