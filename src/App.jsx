@@ -31,8 +31,9 @@ const routes = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+    errorElement: <Error />,
   },
-  { path: "/register", element: <Register /> },
+  { path: "/register", element: <Register />, errorElement: <Error /> },
 ]);
 
 function App() {
