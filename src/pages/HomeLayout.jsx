@@ -1,9 +1,13 @@
 import { Outlet } from "react-router";
+import { Header } from "../components/index.js";
 
 const HomeLayout = () => {
   return (
     <>
-      <Outlet />
+      <Header />
+      <section className="align-element py-20">
+        <Outlet />
+      </section>
     </>
   );
 };
