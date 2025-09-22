@@ -1,6 +1,7 @@
 import { BsCart3, BsMoonFill, BsSunFill } from "react-icons/bs";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router";
+import { NavLinks } from "./index.js";
 
 const Navbar = () => {
   return (
@@ -20,15 +21,15 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-200 z-[1] mt-3 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-200 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
-              nav links
+              <NavLinks />
             </ul>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal">
-            {/*  TODO NAV LINKS*/} nav links
+            <NavLinks />
           </ul>
         </div>
         <div className="navbar-end">
