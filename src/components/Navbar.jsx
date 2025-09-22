@@ -2,8 +2,28 @@ import { BsCart3, BsMoonFill, BsSunFill } from "react-icons/bs";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router";
 import { NavLinks } from "./index.js";
+import { useEffect, useState } from "react";
+
+const themes = {
+  cmyk: "cmyk",
+  sunset: "sunset",
+};
+
+const getThemeFromLocalStorage = () => {
+  return localStorage.getItem("theme") || themes.cmyk;
+};
 
 const Navbar = () => {
+  const [theme, setTheme] = useState(getThemeFromLocalStorage());
+  const handleTheme = () => {
+    const { cmyk, sunset } = themes;
+    const newTheme = theme === cmyk ? sunset : cmyk;
+    setTheme(newTheme);
+  };
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
   return (
     <nav className="bg-base-200">
       <div className="navbar align-element">
@@ -34,6 +54,11 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {/*  THEME SETUP*/}
+          <label htmlFor="toggletheme" className="swap swap-rotate">
+            <input type="checkbox" id="toggletheme" onChange={handleTheme} />
+            <BsSunFill className="swap-on size-6" />
+            <BsMoonFill className="swap-off size-6" />
+          </label>
           <NavLink
             to={"/cart"}
             className={"btn btn-ghost btn-circle btn-md ml-4"}
