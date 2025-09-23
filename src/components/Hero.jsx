@@ -20,7 +20,7 @@ const Hero = () => {
         </p>
         <div className="mt-10">
           <Link to={"/products"} className="btn btn-primary">
-            Out Products
+            Our Products
           </Link>
         </div>
       </div>
