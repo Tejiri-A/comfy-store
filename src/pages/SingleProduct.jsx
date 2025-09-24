@@ -1,5 +1,10 @@
-import { customFetch, formatPrice } from "../utils/index.js";
+import {
+  customFetch,
+  formatPrice,
+  generateAmountOptions,
+} from "../utils/index.jsx";
 import { Link, useLoaderData } from "react-router";
+import { useState } from "react";
 
 export const loader = async ({ params }) => {
   const response = await customFetch(`/products/${params.id}`);
@@ -11,6 +16,12 @@ const SingleProduct = () => {
   const { image, title, price, description, colors, company } =
     product.attributes;
   const dollarsAmount = formatPrice(price);
+  const [productColor, setProductColor] = useState(colors[0]);
+  const [amount, setAmount] = useState(1);
+
+  const handleAmountChange = (e) => {
+    setAmount(parseInt(e.target.value));
+  };
 
   return (
     <section>
@@ -34,12 +45,57 @@ const SingleProduct = () => {
         />
         {/*  PRODUCT*/}
         <div>
-          <h1 className="text-3xl font-bold capitalize">{title}</h1>
+          {/*<h1 className="text-3xl font-bold capitalize">{title}</h1>*/}
           <h4 className="text-neutral-content mt-2 text-xl font-bold">
             {company}
           </h4>
           <p className="mt-3 text-xl">{dollarsAmount}</p>
           <p className="mt-6 leading-8">{description}</p>
+          {/*  COLORS*/}
+          <div className="mt-6">
+            <h4 className="text-md font-medium tracking-wider capitalize">
+              colors
+            </h4>
+            <div className="mt-2">
+              {colors.map((color) => {
+                return (
+                  <button
+                    key={color}
+                    type="button"
+                    className={`badge mr-2 h-6 w-6 ${color === productColor && "border-secondary border-2"}`}
+                    style={{ backgroundColor: color }}
+                    onClick={() => setProductColor(color)}
+                  ></button>
+                );
+              })}
+            </div>
+          </div>
+          {/*  AMOUNT*/}
+          <div className="form-control w-full max-w-xs">
+            <label className="label" htmlFor="amount">
+              <h4 className="text-md font-medium tracking-wider capitalize">
+                amount
+              </h4>
+            </label>
+            <select
+              name="amount"
+              id="amount"
+              className="select select-secondary select-bordered select-md"
+              value={amount}
+              onChange={handleAmountChange}
+            >
+              {generateAmountOptions(10)}
+            </select>
+          </div>
+          {/*  CART BUTTON*/}
+          <div className="mt-10">
+            <button
+              className="btn btn-secondary btn-md uppercase"
+              onClick={() => console.log("add to bag")}
+            >
+              add to bag
+            </button>
+          </div>
         </div>
       </div>
     </section>

@@ -120,7 +120,7 @@ npm i axios@1.4.0 dayjs@1.11.9 @reduxjs/toolkit@1.9.5 @tanstack/react-query@4.32
 ## Challenge (3) - Create All Pages
 
 - create pages directory
-- create all pages and export from index.js
+- create all pages and export from index.jsx
 - About, Cart, Checkout, Error,
   HomeLayout, Landing, Login, Orders,
   Products, Register, SingleProduct
@@ -137,7 +137,7 @@ const About = () => {
 export default About;
 ```
 
-pages/index.js
+pages/index.jsx
 
 ```js
 export { default as HomeLayout } from './HomeLayout';
@@ -352,13 +352,13 @@ export default Error;
 
 ## Challenge (6) - Input Field Component
 
-- create components folder with index.js
+- create components folder with index.jsx
 - in daisyui
 - find Text input component
 - more specifically "With form-control and labels"
 - set it as component (in my case FormInput.jsx)
 - decide on props
-- export from index.js
+- export from index.jsx
 - test in login
 
 ### FormInput.jsx
@@ -387,7 +387,7 @@ export default Error;
 
 ## Solution (6) - Input Field Component
 
-components/index.js
+components/index.jsx
 
 ```js
 export { default as FormInput } from './FormInput';
@@ -1136,7 +1136,7 @@ export default Hero;
 
 - explore api
 - [API DOCS](https://documenter.getpostman.com/view/18152321/2s9Xy5KpTi)
-- create utils/index.js
+- create utils/index.jsx
 - setup custom axios instance
 - figure out the base url
 - setup thunder client (optional)
@@ -1404,7 +1404,7 @@ export default ProductsGrid;
 
 ## Solution (21) - Format Price
 
-- utils/index.js
+- utils/index.jsx
 
 ```js
 export const formatPrice = (price) => {
@@ -3054,7 +3054,7 @@ If amount is greater than item.amount, it means more items are being added, so t
 ## Challenge (37) - Setup Cart Page
 
 - create CartItemsList, CartTotals, CartItem components
-- export CartItemsList, CartTotals in components/index.js
+- export CartItemsList, CartTotals in components/index.jsx
 - setup two column layout in cart page
 
 ### CartPage.jsx
