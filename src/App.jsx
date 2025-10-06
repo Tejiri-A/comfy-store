@@ -20,6 +20,7 @@ import { loader as landingLoader } from "./pages/Landing.jsx";
 import { loader as singleProductLoader } from "./pages/SingleProduct.jsx";
 import { loader as productsLoader } from "./pages/Products.jsx";
 // actions
+import { action as registerAction } from "./pages/Register.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -56,7 +57,12 @@ const routes = createBrowserRouter([
     element: <Login />,
     errorElement: <Error />,
   },
-  { path: "/register", element: <Register />, errorElement: <Error /> },
+  {
+    path: "/register",
+    element: <Register />,
+    errorElement: <Error />,
+    action: registerAction,
+  },
 ]);
 
 function App() {
