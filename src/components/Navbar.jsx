@@ -2,29 +2,16 @@ import { BsCart3, BsMoonFill, BsSunFill } from "react-icons/bs";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router";
 import { NavLinks } from "./index.js";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
-const themes = {
-  cmyk: "cmyk",
-  sunset: "sunset",
-};
-
-const getThemeFromLocalStorage = () => {
-  return localStorage.getItem("theme") || themes.cmyk;
-};
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "../features/user/userSlice.js";
 
 const Navbar = () => {
-  const [theme, setTheme] = useState(getThemeFromLocalStorage());
+  const dispatch = useDispatch();
   const handleTheme = () => {
-    const { cmyk, sunset } = themes;
-    const newTheme = theme === cmyk ? sunset : cmyk;
-    setTheme(newTheme);
+    dispatch(toggleTheme());
   };
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+
   const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart);
   return (
     <nav className="bg-base-200">

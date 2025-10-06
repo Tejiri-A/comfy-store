@@ -1,4 +1,5 @@
 import { NavLink } from "react-router";
+import { useSelector } from "react-redux";
 
 const links = [
   { id: 1, url: "/", text: "home" },
@@ -9,15 +10,19 @@ const links = [
   { id: 6, url: "orders", text: "orders" },
 ];
 const NavLinks = () => {
+  const user = useSelector((state) => state.userState.user);
   return (
     <>
-      {links.map(({ id, url, text }) => (
-        <li key={id}>
-          <NavLink className={"capitalize"} to={url}>
-            {text}
-          </NavLink>
-        </li>
-      ))}
+      {links.map(({ id, url, text }) => {
+        if ((url === "checkout" || url === "orders") && !user) return null;
+        return (
+          <li key={id}>
+            <NavLink className={"capitalize"} to={url}>
+              {text}
+            </NavLink>
+          </li>
+        );
+      })}
     </>
   );
 };
