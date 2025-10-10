@@ -16,3 +16,4 @@ export { default as CartItemsList } from "./CartItemsList.jsx";
 export { default as cartItem } from "./CartItem.jsx";
 export { default as CheckoutForm } from "./CheckoutForm.jsx";
 export { default as OrdersList } from "./OrdersList.jsx";
+export { default as ComplexPaginationContainer } from "./ComplexPaginationContainer.jsx";
