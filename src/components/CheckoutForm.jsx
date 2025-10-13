@@ -2,9 +2,10 @@ import { Form, redirect } from "react-router";
 import { FormInput, SubmitBtn } from "./index.js";
 import { customFetch, formatPrice } from "../utils/index.jsx";
 import { toast } from "react-toastify";
+import { clearCart } from "../features/cart/cartSlice.js";
 
 export const action =
-  (store) =>
+  (store, queryClient) =>
   async ({ request }) => {
     const formData = await request.formData();
     const { name, address } = Object.fromEntries(formData);
@@ -25,7 +26,10 @@ export const action =
         { data: info },
         { headers: { Authorization: `Bearer ${user.token}` } }
       );
-      console.log(response);
+      queryClient.removeQueries(["orders"]);
+      store.dispatch(clearCart());
+      toast.success("order placed successfully");
+      return redirect("/orders");
     } catch (error) {
       console.error(error);
       const errorMessage =
